@@ -62,4 +62,87 @@
 	if (toTop) toTop.addEventListener('click', function () {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	});
+
+	// Mobile navigation: hamburger + submenu accordions
+	var nav = document.querySelector('nav.mainnav');
+	var navToggle = nav ? nav.querySelector('.navtoggle') : null;
+	if (nav && navToggle) {
+		navToggle.addEventListener('click', function () {
+			var open = nav.classList.toggle('open');
+			navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+			if (!open) {
+				Array.prototype.forEach.call(nav.querySelectorAll('li.has.open'), function (li) {
+					li.classList.remove('open');
+				});
+			}
+		});
+
+		// Submenu toggles (mobile). The +/- button expands its parent <li>.
+		Array.prototype.forEach.call(nav.querySelectorAll('.subtog'), function (btn) {
+			btn.addEventListener('click', function (e) {
+				e.preventDefault();
+				var li = btn.closest('li.has');
+				if (li) li.classList.toggle('open');
+			});
+		});
+
+		// Close the drawer after tapping any real link (leaf links / same-page anchors)
+		Array.prototype.forEach.call(nav.querySelectorAll('.links a'), function (a) {
+			a.addEventListener('click', function () {
+				if (nav.classList.contains('open')) {
+					nav.classList.remove('open');
+					navToggle.setAttribute('aria-expanded', 'false');
+				}
+			});
+		});
+	}
+
+	// Pinned orange nav bar on scroll (desktop only; mobile keeps its drawer)
+	var heroNav = document.querySelector('.hero nav.mainnav');
+	if (heroNav) {
+		var pin = document.createElement('div');
+		pin.className = 'pinbar';
+		var pw = document.createElement('div');
+		pw.className = 'wrap';
+		pw.innerHTML = heroNav.innerHTML;
+		Array.prototype.forEach.call(pw.querySelectorAll('[id]'), function (el) { el.removeAttribute('id'); });
+		pin.appendChild(pw);
+		document.body.appendChild(pin);
+		var navBottom = heroNav.getBoundingClientRect().bottom + window.pageYOffset;
+		var onPin = function () {
+			if (window.pageYOffset > navBottom + 4) { pin.classList.add('show'); }
+			else { pin.classList.remove('show'); }
+		};
+		window.addEventListener('scroll', onPin, { passive: true });
+		window.addEventListener('resize', function () {
+			navBottom = heroNav.getBoundingClientRect().bottom + window.pageYOffset;
+			onPin();
+		});
+		onPin();
+	}
+
+	// Fence Types never-ending carousel — clone cards + JS auto-scroll (works with reduced-motion)
+	var track = document.getElementById('typesTrack');
+	if (track && !track.dataset.cloned) {
+		Array.prototype.slice.call(track.children).forEach(function (c) {
+			var clone = c.cloneNode(true);
+			clone.setAttribute('aria-hidden', 'true');
+			track.appendChild(clone);
+		});
+		track.dataset.cloned = '1';
+
+		var paused = false, half = 0;
+		var wrap = track.closest('.typescar') || track;
+		wrap.addEventListener('mouseenter', function () { paused = true; });
+		wrap.addEventListener('mouseleave', function () { paused = false; });
+		function loop() {
+			if (!half) { half = track.scrollWidth / 2; }
+			if (!paused && half > 0) {
+				track.scrollLeft += 0.6;
+				if (track.scrollLeft >= half) { track.scrollLeft -= half; }
+			}
+			requestAnimationFrame(loop);
+		}
+		requestAnimationFrame(loop);
+	}
 })();
