@@ -145,4 +145,45 @@
 		}
 		requestAnimationFrame(loop);
 	}
+
+	// Testimonials carousel — prev/next arrows scroll the track by one card (reduced-motion safe)
+	var revTrack = document.getElementById('revTrack');
+	if (revTrack) {
+		var revPrev = document.querySelector('.revprev');
+		var revNext = document.querySelector('.revnext');
+		function revStep(dir) {
+			var card = revTrack.querySelector('.rev');
+			var w = card ? card.getBoundingClientRect().width + 24 : 340;
+			revTrack.scrollBy({ left: dir * w, behavior: 'smooth' });
+		}
+		if (revPrev) revPrev.addEventListener('click', function () { revStep(-1); });
+		if (revNext) revNext.addEventListener('click', function () { revStep(1); });
+	}
+
+	// Quote popup modal — any .js-quote trigger opens the shared GHL form (lazy-loaded on first open)
+	var qModal = document.getElementById('quoteModal');
+	if (qModal) {
+		var qFrame = qModal.querySelector('iframe');
+		function openQuote(e) {
+			if (e) e.preventDefault();
+			if (qFrame && !qFrame.getAttribute('src') && qFrame.dataset.src) {
+				qFrame.setAttribute('src', qFrame.dataset.src);
+			}
+			qModal.hidden = false;
+			document.body.classList.add('qmodal-open');
+		}
+		function closeQuote() {
+			qModal.hidden = true;
+			document.body.classList.remove('qmodal-open');
+		}
+		Array.prototype.forEach.call(document.querySelectorAll('.js-quote'), function (b) {
+			b.addEventListener('click', openQuote);
+		});
+		Array.prototype.forEach.call(qModal.querySelectorAll('[data-qclose]'), function (c) {
+			c.addEventListener('click', closeQuote);
+		});
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && !qModal.hidden) closeQuote();
+		});
+	}
 })();
