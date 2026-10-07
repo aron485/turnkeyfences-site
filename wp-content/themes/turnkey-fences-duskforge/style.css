@@ -419,6 +419,20 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 .gh .innerbody table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.95rem}
 .gh .innerbody th,.gh .innerbody td{border:1px solid var(--line);padding:10px 12px;text-align:left}
 .gh .innerbody th{background:var(--pane);color:var(--burn)}
+/* --- sectioned content + right-aligned body imagery --- */
+.gh .innerbody .csec{position:relative;padding:34px 0 8px;border-top:1px solid #ece0cb}
+.gh .innerbody .csec:first-child,.gh .innerbody .csec-intro{border-top:none;padding-top:0}
+.gh .innerbody .csec::after{content:"";display:block;clear:both}      /* contain floated images */
+.gh .innerbody .csec>h2:first-child{margin-top:0}
+.gh .innerbody #text-body{margin:0}
+.gh .innerbody #text-body p:first-child{margin-top:14px}
+/* lead banner image stays full width */
+.gh .innerbody figure.fimgs{margin:0 0 4px;width:100%;float:none}
+.gh .innerbody figure.fimgs img{width:100%;height:auto;float:none;margin:0;border-radius:16px;box-shadow:0 16px 40px rgba(32,19,31,.18)}
+/* inline body images float right; text wraps around them */
+.gh .innerbody .csec img{float:right;width:clamp(240px,40%,380px);margin:4px 0 18px 30px;border-radius:14px;box-shadow:0 14px 34px rgba(32,19,31,.16)}
+.gh .innerbody .csec figure{margin:0}
+@media(max-width:620px){.gh .innerbody .csec img{float:none;display:block;width:100%;margin:16px 0}}
 .gh .innerside{display:flex;flex-direction:column;gap:22px;position:sticky;top:20px}
 .gh .sidecta{background:linear-gradient(160deg,#2a1830,#6d3a2a);color:var(--cream);border-radius:18px;padding:24px 22px;box-shadow:0 18px 44px rgba(0,0,0,.2)}
 .gh .sidecta h3{font-family:var(--serif);font-size:1.4rem;color:#fff}
