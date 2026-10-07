@@ -397,6 +397,23 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 .gh .pagehero .phintro{max-width:880px;margin-top:12px}
 .gh .pagehero .lbl{color:var(--honey)}
 .gh .pagehero h1{font-size:clamp(2rem,4.2vw,3.1rem);margin-top:10px;color:var(--cream);line-height:1.12}
+/* --- pilot: photo hero + subtitle + CTAs + trust strip --- */
+.gh .pagehero.has-photo{background:#20131f;padding-bottom:0}
+.gh .pagehero.has-photo::before{content:"";position:absolute;inset:0;z-index:0;background:var(--hero-img) center/cover no-repeat}
+.gh .pagehero.has-photo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(115deg,rgba(26,15,20,.93),rgba(42,24,36,.72) 46%,rgba(177,85,42,.44))}
+.gh .pagehero .wrap{position:relative;z-index:2}
+.gh .pagehero.has-photo .phintro h1{text-shadow:0 2px 16px rgba(18,9,13,.5)}
+.gh .pagehero .hsub{color:#f4e4d1;font-size:1.14rem;line-height:1.6;max-width:62ch;margin:16px 0 0;text-shadow:0 1px 10px rgba(18,9,13,.45)}
+.gh .pagehero .hcta{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0 6px}
+.gh .pagehero .hcta .btn.p{background:linear-gradient(180deg,#f7c24a,#e08a24);color:#3a2208;border:2px solid #ffe7b3;box-shadow:0 14px 30px rgba(40,18,4,.4)}
+.gh .pagehero .hcta .btn.p:hover{transform:translateY(-3px);background:linear-gradient(180deg,#ffce5c,#e8912b);box-shadow:0 20px 40px rgba(40,18,4,.52)}
+.gh .pagehero .hcta .btn.g{background:rgba(26,15,20,.4);border:2px solid #f7edda;color:#fff;box-shadow:0 12px 26px rgba(0,0,0,.3)}
+.gh .pagehero .hcta .btn.g:hover{transform:translateY(-3px);background:rgba(26,15,20,.62);border-color:#fff}
+.gh .trustbar{position:relative;z-index:2;border-top:1px solid rgba(247,237,218,.16);margin-top:30px}
+.gh .trustbar .wrap{display:flex;flex-wrap:wrap;gap:10px 36px;padding:18px 0}
+.gh .trustbar span{color:#f0dcc0;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;display:flex;align-items:center;gap:9px;font-weight:600}
+.gh .trustbar span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--honey);flex:0 0 auto}
+@media(max-width:620px){.gh .trustbar .wrap{gap:9px 20px}.gh .trustbar span{font-size:.7rem}.gh .pagehero .hcta .btn{padding:13px 22px}}
 .gh .pagebody{padding:60px 0 20px}
 .gh .pagebody .wrap{max-width:1180px}
 .gh .innergrid{display:grid;grid-template-columns:1fr 330px;gap:48px;align-items:start}
