@@ -457,6 +457,42 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
   .gh .innerbody .csec img{float:none;display:block;width:100%;margin:16px 0}
   .gh .innerbody figure.fimgs img{height:auto}
 }
+/* === PILOT: full-width banded body (aluminum first) === */
+.gh .pagebody.pilot{padding:0}
+.gh .band{padding:62px 0;position:relative}
+.gh .band>.wrap{max-width:1080px}
+.gh .band-alt{background:linear-gradient(170deg,#f7ebd6,#f1e1c6)}
+.gh .band .eyebrow{color:var(--amber);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:0 0 7px}
+.gh .band h2{font-family:var(--serif);color:var(--burn);font-size:clamp(1.7rem,3vw,2.3rem);margin:0 0 14px;line-height:1.18}
+.gh .band p,.gh .band ol,.gh .band ul{max-width:72ch}
+.gh .band p{margin:13px 0;line-height:1.75;color:#43342a}
+.gh .band-intro p:first-of-type{font-size:1.16rem;line-height:1.7;color:#473729;max-width:74ch}
+.gh .band ol,.gh .band ul{margin:13px 0 13px 2px;padding-left:22px}
+.gh .band li{margin:8px 0}
+.gh .band a{color:var(--burn);text-decoration:underline;text-underline-offset:2px}
+.gh .band a:hover{color:var(--amber)}
+.gh .band strong{color:#2f2419}
+.gh .band img{float:right;width:clamp(240px,38%,360px);margin:4px 0 16px 34px;border-radius:14px;box-shadow:0 14px 34px rgba(32,19,31,.16)}
+.gh .band>.wrap::after{content:"";display:block;clear:both}
+/* card grid for list-heavy sections */
+.gh .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:24px 0 4px;clear:both}
+.gh .fcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 22px;box-shadow:0 10px 26px rgba(32,19,31,.07);transition:transform .25s,box-shadow .25s,border-color .25s}
+.gh .fcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(32,19,31,.13);border-color:var(--amber)}
+.gh .band-alt .fcard{background:#fffaf0}
+.gh .fcard h3{font-family:var(--serif);color:var(--burn);font-size:1.16rem;margin:0 0 8px;padding-top:12px;position:relative}
+.gh .fcard h3::before{content:"";position:absolute;top:0;left:0;width:30px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--amber),var(--honey))}
+.gh .fcard p{margin:0;max-width:none;font-size:.95rem;color:#5a4636;line-height:1.65}
+.gh .fcard img{float:none;width:100%;margin:0 0 12px}
+/* explore band (related fence types) */
+.gh .band-explore{background:linear-gradient(160deg,#241226,#4a2a28)}
+.gh .band-explore .eyebrow{color:var(--honey)}
+.gh .band-explore h2{color:#fff}
+.gh .xgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.gh .xcard{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(247,237,218,.16);border-radius:12px;padding:15px 18px;color:var(--cream);font-weight:600;font-size:.96rem;transition:background .2s,border-color .2s,transform .2s}
+.gh .xcard:hover{background:rgba(247,237,218,.12);border-color:var(--honey);transform:translateY(-3px)}
+.gh .xcard .go{color:var(--honey)}
+@media(max-width:900px){.gh .fgrid{grid-template-columns:repeat(2,1fr)}.gh .xgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.gh .fgrid,.gh .xgrid{grid-template-columns:1fr}.gh .band img{float:none;display:block;width:100%;margin:14px 0}.gh .band{padding:44px 0}}
 .gh .innerside{display:flex;flex-direction:column;gap:22px;position:sticky;top:20px}
 .gh .sidecta{background:linear-gradient(160deg,#2a1830,#6d3a2a);color:var(--cream);border-radius:18px;padding:24px 22px;box-shadow:0 18px 44px rgba(0,0,0,.2)}
 .gh .sidecta h3{font-family:var(--serif);font-size:1.4rem;color:#fff}
