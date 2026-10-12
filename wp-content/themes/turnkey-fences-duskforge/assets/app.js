@@ -97,8 +97,9 @@
 		});
 	}
 
-	// Pinned orange nav bar on scroll (desktop only; mobile keeps its drawer)
-	var heroNav = document.querySelector('.hero nav.mainnav');
+	// Pinned orange nav bar on scroll (desktop only; mobile keeps its drawer).
+	// Homepage uses the .hero nav; inner pages + blog posts use the .pagehero nav.
+	var heroNav = document.querySelector('.hero nav.mainnav') || document.querySelector('.pagehero nav.mainnav');
 	if (heroNav) {
 		var pin = document.createElement('div');
 		pin.className = 'pinbar';

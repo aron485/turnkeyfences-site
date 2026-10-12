@@ -3,7 +3,7 @@ Theme Name: TurnKey Fences — Duskforge
 Theme URI: http://turnkey-fences.local
 Author: Infintech Designs
 Description: Golden Hour / Duskforge homepage design for TurnKey Fences (New Orleans). Static staging theme built from the approved artifact e3f11df1.
-Version: 1.0.0
+Version: 1.12.5
 Requires at least: 6.0
 Tested up to: 6.6
 Requires PHP: 8.0
@@ -400,7 +400,7 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 .gh .pagehero.has-photo{background:#20131f;padding-bottom:0}
 .gh .pagehero.has-photo::before{content:"";position:absolute;inset:0;z-index:0;background:var(--hero-img) center/cover no-repeat}
 .gh .pagehero.has-photo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(115deg,rgba(26,15,20,.93),rgba(42,24,36,.72) 46%,rgba(177,85,42,.44))}
-.gh .pagehero .wrap{position:relative;z-index:2}
+.gh .pagehero .wrap{position:relative;z-index:2;max-width:1300px}
 .gh .pagehero.has-photo .phintro h1{text-shadow:0 2px 16px rgba(18,9,13,.5)}
 .gh .pagehero .hsub{color:#f4e4d1;font-size:1.14rem;line-height:1.6;max-width:62ch;margin:16px 0 0;text-shadow:0 1px 10px rgba(18,9,13,.45)}
 .gh .pagehero .hcta{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0 6px}
@@ -414,7 +414,7 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 .gh .trustbar span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--honey);flex:0 0 auto}
 @media(max-width:620px){.gh .trustbar .wrap{gap:9px 20px}.gh .trustbar span{font-size:.7rem}.gh .pagehero .hcta .btn{padding:13px 22px}}
 .gh .pagebody{padding:60px 0 20px}
-.gh .pagebody .wrap{max-width:1180px}
+.gh .pagebody .wrap{max-width:1300px}
 .gh .innergrid{display:grid;grid-template-columns:1fr 330px;gap:48px;align-items:start}
 .gh .innermain{min-width:0}
 .gh .innerbody{color:#43342a;font-size:1.03rem;line-height:1.75}
@@ -436,7 +436,7 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 .gh .innerbody th,.gh .innerbody td{border:1px solid var(--line);padding:10px 12px;text-align:left}
 .gh .innerbody th{background:var(--pane);color:var(--burn)}
 /* --- inner page: compact header logo, sectioned content, sized imagery --- */
-.gh .pagehero .mainnav .logo img{height:50px}                       /* smaller logo on inner pages */
+.gh .pagehero .mainnav .logo img{height:76px}                       /* match the homepage logo size */
 .gh .innerbody .csec{position:relative;padding:36px 0 10px;border-top:1px solid #ece0cb}
 .gh .innerbody .csec:first-child,.gh .innerbody .csec-intro{border-top:none;padding-top:0}
 .gh .innerbody .csec::after{content:"";display:block;clear:both}      /* contain floated images */
@@ -459,7 +459,7 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 /* === PILOT: full-width banded body (aluminum first) === */
 .gh .pagebody.pilot{padding:0;counter-reset:band}
 .gh .band{padding:66px 0;position:relative;overflow:hidden;background:#fffdf7}
-.gh .band>.wrap{max-width:1080px;position:relative;z-index:1}
+.gh .band>.wrap{max-width:1180px;position:relative;z-index:1}
 .gh .band-intro{background:linear-gradient(180deg,#faf2e2,#f6ecd7)}
 .gh .band-alt{background:linear-gradient(165deg,#f1e1c6,#e7cfa4)}
 .gh .band-cta{background:linear-gradient(170deg,#fbf3e4,#f4e5ca)}
@@ -675,11 +675,11 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
   background:linear-gradient(90deg,#a94e26 0%,#c8763a 55%,#e0913a 100%);box-shadow:0 10px 30px rgba(32,19,31,.3);
   font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
 .pinbar.show{transform:translateY(0)}
-.pinbar .wrap{max-width:1160px;margin:0 auto;padding:10px 30px;display:flex;align-items:center;gap:20px}
+.pinbar .wrap{max-width:1160px;margin:0 auto;padding:5px 30px;display:flex;align-items:center;gap:20px}
 .pinbar a{text-decoration:none;color:inherit}
 .pinbar ul{list-style:none;margin:0;padding:0}
 .pinbar .logo{display:flex;align-items:center}
-.pinbar .logo img{height:42px;width:auto;display:block}
+.pinbar .logo img{height:76px;width:auto;display:block}
 .pinbar .links{display:flex;align-items:center;gap:2px;margin-left:auto;font-size:.92rem}
 .pinbar .links>li{position:relative}
 .pinbar .links>li>a{display:block;padding:8px 12px;border-radius:9px;color:#fff;white-space:nowrap;transition:background .2s}
@@ -784,3 +784,50 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 .qmodal-x:hover{background:#3a2409;transform:scale(1.08)}
 .qmodal-box iframe{width:100%;height:100%;border:none;display:block;background:#fff}
 body.qmodal-open{overflow:hidden}
+
+/* ============ Blog + homepage refinements (2026-10-13) ============ */
+/* (2) Homepage "What We Build" section — subtle textured fence background */
+.gh .svc{position:relative;overflow:hidden}
+.gh .svc::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(rgba(245,237,221,.90),rgba(240,228,205,.93)),url(assets/img/about-craft.jpg) center/cover no-repeat}
+.gh .svc .wrap{position:relative;z-index:1}
+
+/* (3) Blog post photo hero — breathing room at the bottom (no trustbar follows) */
+.gh .pagehero.posthero{padding-bottom:56px}
+
+/* (4) Sidebar estimate button — make it an obvious clickable button on the dark card */
+.gh .sidecta .btn.p{background:linear-gradient(180deg,#f7c24a,#e08a24);color:#3a2208;border:2px solid #ffe7b3;padding:14px 24px;box-shadow:0 12px 26px rgba(40,18,4,.35);transition:transform .2s,box-shadow .2s}
+.gh .sidecta .btn.p:hover{transform:translateY(-2px);background:linear-gradient(180deg,#ffce5c,#e8912b);box-shadow:0 18px 34px rgba(40,18,4,.45)}
+
+/* (5) Blog post body images — consistent 450px, right-aligned (house style).
+   !important overrides the shared .csec img clamp that otherwise caps them. */
+body.single .gh .innerbody img{width:450px!important;max-width:100%!important;height:auto!important;float:right!important;margin:6px 0 18px 30px!important;border-radius:14px;box-shadow:0 12px 30px rgba(32,19,31,.15)}
+@media(max-width:620px){body.single .gh .innerbody img{float:none!important;display:block;width:100%!important;margin:16px 0!important}}
+
+/* ============ Blog listing card polish (2026-10-13) ============ */
+.gh .blogcard .bc-thumb{position:relative}
+.gh .blogcard .bc-thumb img{transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.gh .blogcard:hover .bc-thumb img{transform:scale(1.07)}
+.gh .blogcard .bc-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(26,15,20,.34));opacity:0;transition:opacity .3s}
+.gh .blogcard:hover .bc-thumb::after{opacity:1}
+.gh .blogcard .bc-body{padding:18px 22px 22px}
+.gh .blogcard .bc-meta{font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;color:var(--amber);font-weight:700;display:inline-flex;align-items:center;gap:7px}
+.gh .blogcard .bc-meta::before{content:"";width:18px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--amber),var(--honey))}
+.gh .blogcard h3{transition:color .2s}
+.gh .blogcard:hover h3{color:var(--amber)}
+.gh .blogcard .go{display:inline-flex;align-items:center;gap:6px;margin-top:6px;transition:gap .22s,color .2s}
+.gh .blogcard:hover .go{gap:12px;color:var(--burn)}
+
+/* ============ /blog/ sidebar: search + categories (2026-10-13) ============ */
+.gh .innergrid .bloggrid{grid-template-columns:repeat(2,1fr);gap:22px}
+@media(max-width:600px){.gh .innergrid .bloggrid{grid-template-columns:1fr}}
+.gh .sidesearch{background:var(--pane);border:1px solid var(--line);border-radius:18px;padding:18px 22px;margin-bottom:22px}
+.gh .sidesearch h3{font-family:var(--serif);color:var(--burn);font-size:1.15rem;margin-bottom:12px}
+.gh .sidesearch .searchform{display:flex;border:1px solid var(--line);border-radius:30px;overflow:hidden;background:#fff}
+.gh .sidesearch input[type=search]{flex:1;min-width:0;border:none;background:transparent;padding:11px 16px;font-size:.92rem;color:var(--ink);outline:none}
+.gh .sidesearch button{flex:0 0 auto;border:none;background:var(--burn);color:#fff;padding:0 15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.gh .sidesearch button:hover{background:#8f421f}
+.gh .sidesearch button svg{width:18px;height:18px}
+.gh .innerside .sidelist{margin-bottom:22px}
+.gh .sidelist .cat-item a{display:inline-block}
+.gh .sidelist .cat-item{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:2px 0}
+.gh .sidelist .cat-item:last-child{border-bottom:none}
