@@ -66,10 +66,12 @@
 	// Mobile navigation: hamburger + submenu accordions
 	var nav = document.querySelector('nav.mainnav');
 	var navToggle = nav ? nav.querySelector('.navtoggle') : null;
+	var heroWrap = nav ? nav.closest('.hero, .pagehero') : null;
 	if (nav && navToggle) {
 		navToggle.addEventListener('click', function () {
 			var open = nav.classList.toggle('open');
 			navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+			if (heroWrap) heroWrap.classList.toggle('menuopen', open);
 			if (!open) {
 				Array.prototype.forEach.call(nav.querySelectorAll('li.has.open'), function (li) {
 					li.classList.remove('open');
@@ -91,13 +93,14 @@
 			a.addEventListener('click', function () {
 				if (nav.classList.contains('open')) {
 					nav.classList.remove('open');
+					if (heroWrap) heroWrap.classList.remove('menuopen');
 					navToggle.setAttribute('aria-expanded', 'false');
 				}
 			});
 		});
 	}
 
-	// Pinned orange nav bar on scroll (desktop only; mobile keeps its drawer).
+	// Pinned nav bar on scroll (desktop + mobile; on mobile it shows a hamburger drawer).
 	// Homepage uses the .hero nav; inner pages + blog posts use the .pagehero nav.
 	var heroNav = document.querySelector('.hero nav.mainnav') || document.querySelector('.pagehero nav.mainnav');
 	if (heroNav) {
@@ -109,6 +112,35 @@
 		Array.prototype.forEach.call(pw.querySelectorAll('[id]'), function (el) { el.removeAttribute('id'); });
 		pin.appendChild(pw);
 		document.body.appendChild(pin);
+
+		// Mobile: the pinned bar is a clone created after the main nav handlers ran,
+		// so bind its own hamburger + submenu accordions + close-on-link-tap.
+		var pinToggle = pin.querySelector('.navtoggle');
+		if (pinToggle) {
+			pinToggle.addEventListener('click', function () {
+				var o = pin.classList.toggle('navopen');
+				pinToggle.setAttribute('aria-expanded', o ? 'true' : 'false');
+				if (!o) {
+					Array.prototype.forEach.call(pin.querySelectorAll('li.has.open'), function (li) { li.classList.remove('open'); });
+				}
+			});
+		}
+		Array.prototype.forEach.call(pin.querySelectorAll('.subtog'), function (btn) {
+			btn.addEventListener('click', function (e) {
+				e.preventDefault();
+				var li = btn.closest('li.has');
+				if (li) li.classList.toggle('open');
+			});
+		});
+		Array.prototype.forEach.call(pin.querySelectorAll('.links a'), function (a) {
+			a.addEventListener('click', function () {
+				if (pin.classList.contains('navopen')) {
+					pin.classList.remove('navopen');
+					if (pinToggle) pinToggle.setAttribute('aria-expanded', 'false');
+				}
+			});
+		});
+
 		var navBottom = heroNav.getBoundingClientRect().bottom + window.pageYOffset;
 		var onPin = function () {
 			if (window.pageYOffset > navBottom + 4) { pin.classList.add('show'); }

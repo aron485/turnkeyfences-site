@@ -3,7 +3,7 @@ Theme Name: TurnKey Fences — Duskforge
 Theme URI: http://turnkey-fences.local
 Author: Infintech Designs
 Description: Golden Hour / Duskforge homepage design for TurnKey Fences (New Orleans). Static staging theme built from the approved artifact e3f11df1.
-Version: 1.12.7
+Version: 1.12.8
 Requires at least: 6.0
 Tested up to: 6.6
 Requires PHP: 8.0
@@ -31,6 +31,11 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 .gh .idbar b{color:var(--honey)}
 .gh .idbar .sp{margin-left:auto;color:#b79f83}
 .gh .idbar a{color:var(--honey)}
+/* mobile: keep the two info blocks side-by-side as 2 columns (don't stack) */
+@media(max-width:640px){.gh .idbar{font-size:10px}
+  .gh .idbar .wrap{flex-wrap:nowrap;gap:14px;align-items:flex-start}
+  .gh .idbar>.wrap>span{flex:1 1 0;min-width:0}
+  .gh .idbar .sp{margin-left:0;text-align:right}}
 
 /* HERO — Golden Hour base */
 .gh .hero{position:relative;overflow:hidden;background:#1a0f14}
@@ -90,6 +95,11 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
   .gh nav .sub li a{color:#e7d3ba;padding:11px 16px}
   .gh nav .sub li a:hover{background:rgba(244,205,130,.12);color:var(--honey);padding-left:16px}
   .gh nav .call{display:none}
+}
+/* mobile: when the drawer is open, let it spill past the hero (hero clips via overflow:hidden) + raise above following sections */
+@media(max-width:1040px){
+  .gh .hero.menuopen,.gh .pagehero.menuopen{overflow:visible;position:relative;z-index:60}
+  .gh nav.mainnav.open{z-index:60}
 }
 .gh .hero .in{position:relative;z-index:5;text-align:center;padding:56px 30px 120px;max-width:56rem;margin:0 auto}
 .gh .hero .lbl{color:var(--honey)}
@@ -603,8 +613,8 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 .gh .megafoot::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--burn),var(--amber),var(--honey))}
 .gh .megafoot .cols{display:grid;grid-template-columns:1.5fr 1fr 1.1fr 1.1fr 1fr;gap:34px}
 @media(max-width:980px){.gh .megafoot .cols{grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}}
-@media(max-width:760px){.gh .megafoot .cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 34px}}
-@media(max-width:560px){.gh .megafoot .cols{grid-template-columns:1fr;gap:28px}}
+/* phones/phablets: single column so each section stacks (Commercial directly under Residential) */
+@media(max-width:767px){.gh .megafoot .cols{grid-template-columns:1fr;gap:28px}}
 .gh .megafoot h4{font-family:var(--serif);font-weight:400;color:var(--honey);font-size:1.24rem;margin-bottom:18px}
 .gh .megafoot h4 b{color:var(--amber);font-weight:700}
 .gh .megafoot ul li{margin-bottom:11px}
@@ -670,7 +680,7 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 /* ================= Batch-2 additions ================= */
 
 /* PINNED NAV on scroll (desktop) — orange bar, readable. Lives outside .gh, so declare vars locally. */
-.pinbar{--pane:#fbf4e7;--line:#ecdcc2;--ink:#33241a;--burn:#b1552a;--cream:#f7edda;
+.pinbar{--pane:#fbf4e7;--line:#ecdcc2;--ink:#33241a;--burn:#b1552a;--cream:#f7edda;--honey:#f4cd82;
   position:fixed;top:0;left:0;right:0;z-index:1000;transform:translateY(-100%);
   transition:transform .35s cubic-bezier(.16,1,.3,1);
   background:linear-gradient(90deg,#a94e26 0%,#c8763a 55%,#e0913a 100%);box-shadow:0 10px 30px rgba(32,19,31,.3);
@@ -699,7 +709,34 @@ body{background:#f7edda;color:#33241a;line-height:1.65;font-family:"Segoe UI",sy
 .pinbar .call{border:1px solid rgba(255,255,255,.75);color:#fff;padding:9px 16px;border-radius:30px;font-size:.86rem;white-space:nowrap}
 .pinbar .call:hover{background:rgba(255,255,255,.16)}
 .pinbar .navtoggle,.pinbar .subtog{display:none!important}
-@media(max-width:1040px){.pinbar{display:none!important}}
+/* MOBILE: keep the pinned bar on scroll (boss request) with a working hamburger drawer.
+   Pinbar is position:fixed, so its absolute drawer is NOT clipped by the hero. */
+@media(max-width:1040px){
+  .pinbar .wrap{padding:6px 16px;gap:12px}
+  .pinbar .logo img{height:46px}
+  .pinbar .call{display:none}
+  .pinbar .navtoggle{display:flex!important;margin-left:auto;width:44px;height:44px;flex-direction:column;justify-content:center;align-items:center;gap:6px;background:none;border:0;cursor:pointer;padding:0}
+  .pinbar .navtoggle span{display:block;height:2px;width:26px;background:#fff;border-radius:2px;transition:transform .3s ease,opacity .3s ease}
+  .pinbar.navopen .navtoggle span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .pinbar.navopen .navtoggle span:nth-child(2){opacity:0}
+  .pinbar.navopen .navtoggle span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .pinbar .links{position:absolute;top:calc(100% + 8px);left:8px;right:8px;margin-left:0;flex-direction:column;align-items:stretch;gap:2px;
+    background:rgba(26,15,20,.98);border:1px solid rgba(244,205,130,.18);border-radius:16px;padding:10px;
+    max-height:0;overflow:hidden;opacity:0;visibility:hidden;transition:max-height .35s ease,opacity .3s ease,visibility .3s}
+  .pinbar.navopen .links{max-height:80vh;overflow-y:auto;opacity:1;visibility:visible}
+  .pinbar .links>li{width:100%;position:relative}
+  .pinbar .links>li>a{padding:13px 14px;border-radius:9px}
+  .pinbar .links>li.has>a::after{display:none}
+  .pinbar .subtog{display:block!important;position:absolute;right:4px;top:4px;width:44px;height:46px;background:none;border:0;cursor:pointer;z-index:2}
+  .pinbar .subtog::before,.pinbar .subtog::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--honey);transform:translate(-50%,-50%);transition:transform .3s}
+  .pinbar .subtog::after{transform:translate(-50%,-50%) rotate(90deg)}
+  .pinbar .links>li.open .subtog::after{transform:translate(-50%,-50%) rotate(0)}
+  .pinbar .sub{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:rgba(0,0,0,.22);border:0;border-radius:10px;min-width:0;
+    max-height:0;overflow:hidden;padding:0 6px;margin:0 4px;transition:max-height .3s ease,padding .3s ease}
+  .pinbar .sub.cols3{display:block;min-width:0}
+  .pinbar .links>li.open .sub{max-height:640px;padding:6px}
+  .pinbar .sub li a{color:#e7d3ba;padding:11px 16px}
+}
 @media(prefers-reduced-motion:reduce){.pinbar{transition:none}}
 
 /* OUR TEAM */
